@@ -1,0 +1,10 @@
+.gradle
+.idea
+*.iws
+*.inl
+*.ipr
+build/
+!**/src/main/**
+!**/src/tast/**
+.allure
+*.log
