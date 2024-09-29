@@ -34,4 +34,10 @@ public class RegistrationWithPageObjectsTests  extends TestBase{
                 .checkResult("Address", "Gorohovaya,1")
                 .checkResult("State and City","NCR Delhi");
     }
+    @Test
+    void emptyForm(){
+        registrationPage.openPage()
+                .modalDialogNotOpen();
+    }
+
 }

@@ -6,6 +6,7 @@ import pages.components.CalendarComponent;
 import pages.components.TableResultComponent;
 
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -107,6 +108,11 @@ public class RegistrationPage {
         tableResult.shouldHave(text("Thanks for submitting the form"));
         new TableResultComponent().checkFilledField(key, value);
 
+        return this;
+    }
+
+    public RegistrationPage modalDialogNotOpen(){
+        tableResult.shouldNot(appear);
         return this;
     }
 
