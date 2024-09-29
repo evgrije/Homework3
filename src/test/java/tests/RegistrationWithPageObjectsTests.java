@@ -40,4 +40,18 @@ public class RegistrationWithPageObjectsTests  extends TestBase{
                 .modalDialogNotOpen();
     }
 
+    @Test
+    void requiredFillRegistrationForm(){
+        registrationPage.openPage()
+                .setFirstName("Musya")
+                .setLastName("Petrova")
+                .setGender("Male")
+                .setUserNumber("0987654321")
+                .clickSubmit();
+        registrationPage.checkResult("Student Name", "Musya" + " " + "Petrova")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "0987654321");
+    }
+
+
 }
