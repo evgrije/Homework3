@@ -9,6 +9,7 @@ dependencies { //зависимости
     testImplementation(
             "com.codeborne:selenide:6.19.1", //использование библиотеки селенид (хотим взять селенид из сайта mavenCentral()
             "org.junit.jupiter:junit-jupiter:5.10.0",
+            'com.github.javafaker:javafaker:1.0.2'
             //'org.slf4g:slf4g-simple:2.0.7' //чтобы заработал логгер
 
     )

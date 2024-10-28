@@ -2,37 +2,55 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.RandomUtils;
 
 public class RegistrationWithPageObjectsTests  extends TestBase{
-    RegistrationPage registrationPage = new RegistrationPage();
+    private final RegistrationPage registrationPage = new RegistrationPage();
+
+
+
+    String firstName = RandomUtils.getRandomFirstName(),
+            lastName = RandomUtils.getRandomLastName(),
+            userEmail = RandomUtils.getRandomEmailAddress(),
+            userNumber = RandomUtils.getRandomUserNumber(),
+            streetAddress = RandomUtils.getRandomStreetAddress(),
+            userGender = RandomUtils.getRandomGender(),
+            userImage = RandomUtils.getRandomImage(),
+           dayOfBirth = RandomUtils.getRandomDay(),
+            monthOfBirth = RandomUtils.getRandomMonth(),
+            yearOfBirth  = RandomUtils.getRandomYear(),
+            userSubject = RandomUtils.getSubject(),
+            userHobbies = RandomUtils.getHobbies(),
+            userState = RandomUtils.setState(),
+            userCity = RandomUtils.setCity(userState);
 
     @Test
     void successfulRegistrationTest(){
         registrationPage.openPage()
-                .setFirstName("Alex")
-                .setLastName("Egorov")
-                .setEmail("alex@example.com")
-                .setGender("Other")
-                .setUserNumber("1234567890")
-                .setDateOfBirth("30", "July", "2008")
-                .setSubject("English")
-                .setHobbies("[for=hobbies-checkbox-2]")
-                .uploadImage("reference.png")
-                .setCurrentAddress("Gorohovaya,1")
-                .selectState("NCR")
-                .selectCity("Delhi")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setUserNumber(userNumber)
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubject(userSubject)
+                .setHobbies(userHobbies)
+                .uploadImage(userImage)
+                .setCurrentAddress(streetAddress)
+                .selectState(userState)
+                .selectCity(userCity)
                 .clickSubmit();
 
-        registrationPage.checkResult("Student Name", "Alex" + " " + "Egorov")
-                .checkResult("Student Email", "alex@example.com")
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "1234567890")
-                .checkResult("Date of Birth", "30 July,2008")
-                .checkResult("Subjects", "English")
-                .checkResult("Hobbies", "Reading")
-                .checkResult("Picture", "reference.png")
-                .checkResult("Address", "Gorohovaya,1")
-                .checkResult("State and City","NCR Delhi");
+        registrationPage.checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", userGender)
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", dayOfBirth + " " +  monthOfBirth + "," + yearOfBirth)
+                .checkResult("Subjects", userSubject)
+                .checkResult("Hobbies", userHobbies)
+                .checkResult("Picture", userImage)
+                .checkResult("Address", streetAddress)
+                .checkResult("State and City", userState + " " + userCity);
     }
     @Test
     void emptyForm(){

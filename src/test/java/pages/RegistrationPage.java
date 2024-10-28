@@ -73,7 +73,7 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setHobbies(String value){
-        hobbiesWrapper.find(value).click();
+        hobbiesWrapper.$(byText(value)).click();
 
         return this;
     }
